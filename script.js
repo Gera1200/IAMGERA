@@ -1,9 +1,16 @@
-// Mostrar/ocultar el menú lateral
 const toggleMenuButton = document.getElementById("toggle-menu");
 const sidebar = document.getElementById("sidebar");
+const container = document.querySelector(".container");
 
+// Mostrar/ocultar el menú lateral
 toggleMenuButton.addEventListener("click", () => {
     sidebar.classList.toggle("hidden");
+    // Ajustar el margen del contenido dependiendo del estado del menú
+    if (sidebar.classList.contains("hidden")) {
+        container.style.marginLeft = "0";
+    } else {
+        container.style.marginLeft = "250px";
+    }
 });
 
 // Mostrar/ocultar secciones
@@ -16,12 +23,10 @@ menuButtons.forEach((button) => {
         const targetId = button.getAttribute("data-target");
         const targetSection = document.getElementById(targetId);
 
-        // Si ya está visible, regresar al inicio
         if (targetSection.classList.contains("active")) {
             sections.forEach((section) => section.classList.remove("active"));
             inicioSection.classList.add("active");
         } else {
-            // Mostrar solo la sección seleccionada
             sections.forEach((section) => section.classList.remove("active"));
             targetSection.classList.add("active");
         }
